@@ -45,7 +45,7 @@ include "koneksi.php";
             $jenis_kelamin = $_POST['jenis_kelamin'];
             $jabatan = $_POST['jabatan'];
 
-            $tambah = $koneksi->query("INSERT INTO tb_pegawai(nama,alamat,jenis_kelamin,jabatan) 
+            $tambah = mysqli_query($koneksi, "INSERT INTO tb_pegawai(nama,alamat,jenis_kelamin,jabatan) 
         VALUES('$nama','$alamat','$jenis_kelamin','$jabatan')");
 
             if ($tambah) {
@@ -55,6 +55,7 @@ include "koneksi.php";
             } else {
                 echo "<script>
             alert('Data Gagal Ditambahkan!, Database Error!')
+            window.location = 'tambah.php'
             </script>";
             }
         }

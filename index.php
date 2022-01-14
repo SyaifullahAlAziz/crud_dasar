@@ -2,7 +2,7 @@
 
 include "koneksi.php";
 
-$data_pegawai = $koneksi->query("SELECT * FROM tb_pegawai");
+$data_pegawai = mysqli_query($koneksi, "SELECT * FROM tb_pegawai");
 
 ?>
 
@@ -33,10 +33,11 @@ $data_pegawai = $koneksi->query("SELECT * FROM tb_pegawai");
         </thead>
         <tbody>
             <?php $no = 1; ?>
+            <!-- Array - Key - Value-->
             <?php foreach ($data_pegawai as $key => $pegawai) : ?>
                 <tr>
-                    <td><?= $no++ ?></td>
-                    <td><?= $pegawai['nama'] ?></td>
+                    <td><?= $key + 1 ?></td>
+                    <td><?php echo $pegawai['nama'] ?></td>
                     <td><?= $pegawai['alamat'] ?></td>
                     <td><?= $pegawai['jenis_kelamin'] == 'L' ? 'Laki-Laki' : 'Perempuan' ?></td>
                     <td><?= $pegawai['jabatan'] ?></td>

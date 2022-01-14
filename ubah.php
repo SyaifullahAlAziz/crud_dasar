@@ -4,7 +4,9 @@ include "koneksi.php";
 $id_pegawai = $_GET['id_pegawai'];
 
 //cek ke database
-$pegawai = $koneksi->query("SELECT * FROM tb_pegawai WHERE id_pegawai='$id_pegawai'")->fetch_assoc();
+$data_pegawai = mysqli_query($koneksi, "SELECT * FROM tb_pegawai WHERE id_pegawai='$id_pegawai'");
+
+$data_pegawai = mysqli_fetch_array($data_pegawai);
 
 ?>
 
@@ -21,17 +23,17 @@ $pegawai = $koneksi->query("SELECT * FROM tb_pegawai WHERE id_pegawai='$id_pegaw
     <form method="post" action="">
 
         <label>Nama</label> <br>
-        <input type="text" name="nama" value="<?= $pegawai['nama'] ?>" style="width:30%" ; height=":25px;"> <br>
+        <input type="text" name="nama" value="<?= $data_pegawai['nama'] ?>" style="width:30%" ; height=":25px;"> <br>
         <label>Alamat</label> <br>
-        <input type="text" name="alamat" value="<?= $pegawai['alamat'] ?>" style="width:30%" ; height=":25px;"> <br>
+        <input type="text" name="alamat" value="<?= $data_pegawai['alamat'] ?>" style="width:30%" ; height=":25px;"> <br>
         <label>Jenis Kelamin</label> <br>
         <select name="jenis_kelamin" style="width: 30%; height: 35px;">
             <option value="">---PILIH JENIS KELAMIN---</option>
-            <option value="L" <?= $pegawai['jenis_kelamin'] == 'L' ? 'selected' : '' ?>>---LAKI-LAKI--</option>
-            <option value="P" <?= $pegawai['jenis_kelamin'] == 'P' ? 'selected' : '' ?>>---PEREMPUAN---</option>
+            <option value="L" <?= $data_pegawai['jenis_kelamin'] == 'L' ? 'selected' : '' ?>>---LAKI-LAKI--</option>
+            <option value="P" <?= $data_pegawai['jenis_kelamin'] == 'P' ? 'selected' : '' ?>>---PEREMPUAN---</option>
         </select> <br>
         <label>Jabatan</label> <br>
-        <input type="text" name="jabatan" required value="<?= $pegawai['jabatan'] ?>" style="width:30%" ; height=":25px;"> <br><br>
+        <input type="text" name="jabatan" required value="<?= $data_pegawai['jabatan'] ?>" style="width:30%" ; height=":25px;"> <br><br>
 
         <input type="submit" name="ubah" value="Ubah Data">
 
